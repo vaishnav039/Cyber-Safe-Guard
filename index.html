@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Toolkit</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: rgba(31, 31, 31, 0.9);
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        main {
+            margin: 20px;
+        }
+        .tool {
+            background: rgba(30, 30, 30, 0.9);
+            padding: 20px;
+            margin: 20px auto;
+            width: 50%;
+            border-radius: 10px;
+            border: 5px solid green;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        input {
+            width: 80%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #007BFF;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        p {
+            font-size: 18px;
+        }
+        footer {
+            background-color: rgba(31, 31, 31, 0.9);
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CyberSafeGuard</h1>
+    </header>
+    <main>
+        <section class="tool">
+            <h2>Phishing URL Checker</h2>
+            <input type="text" id="urlInput" placeholder="Enter URL to check">
+            <button onclick="checkURL()">Check</button>
+            <p id="urlResult"></p>
+        </section>
+
+        <section class="tool">
+            <h2>Password Strength Checker</h2>
+            <input type="password" id="passwordInput" oninput="checkPassword()" placeholder="Enter password">
+            <p id="passwordStrength"></p>
+        </section>
+
+        <section class="tool">
+            <h2>Basic Vulnerability Scanner</h2>
+            <input type="text" id="vulnInput" placeholder="Enter website URL">
+            <button onclick="scanVulnerabilities()">Scan</button>
+            <p id="vulnResult"></p>
+        </section>
+    </main>
+    <footer>
+        <p><strong>Cybersecurity Awareness:</strong> Stay vigilant against online threats! Always verify URLs before clicking, use strong passwords, and keep your software updated to protect your data.</p>
+    </footer>
+    <script>
+        function checkURL() {
+            const url = document.getElementById('urlInput').value;
+            const resultText = document.getElementById('urlResult');
+            if (!url) {
+                resultText.innerText = 'Please enter a valid URL.';
+                resultText.style.color = 'white';
+                return;
+            }
+            resultText.innerText = 'Checking URL for phishing threats...';
+            setTimeout(() => {
+                const isSafe = Math.random() > 0.5; // Simulated result
+                resultText.innerText = isSafe ? 'URL is safe.' : 'URL is unsafe!';
+                resultText.style.color = isSafe ? 'green' : 'red';
+            }, 2000);
+        }
+
+        function scanVulnerabilities() {
+            const url = document.getElementById('vulnInput').value;
+            const resultText = document.getElementById('vulnResult');
+            if (!url) {
+                resultText.innerText = 'Please enter a valid URL.';
+                return;
+            }
+            resultText.innerText = 'Scanning for vulnerabilities...';
+            setTimeout(() => {
+                resultText.innerText = 'Scan complete. No major vulnerabilities found.';
+            }, 2000);
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const strengthText = document.getElementById('passwordStrength');
+            if (password.length < 6) {
+                strengthText.innerText = 'Weak';
+                strengthText.style.color = 'red';
+            } else if (password.length < 12) {
+                strengthText.innerText = 'Medium';
+                strengthText.style.color = 'orange';
+            } else {
+                strengthText.innerText = 'Strong';
+                strengthText.style.color = 'green';
+            }
+        }
+    </script>
+</body>
+</html>
